@@ -4,7 +4,7 @@ from .models import Profile
 
 #Profile Detallado
 class ProfileAdmin(admin.ModelAdmin):
-    list_display = ('user', 'apodo', 'location', 'user_group')
+    list_display = ('user', 'apodo', 'is_moderator', 'location', 'user_group')
     # Use double-underscore lookups to search related fields
     search_fields = ('location', 'user__username', 'user__groups__name')
     list_filter = ('user__groups', 'location')
