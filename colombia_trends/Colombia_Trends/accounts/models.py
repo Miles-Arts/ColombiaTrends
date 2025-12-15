@@ -19,6 +19,12 @@ class Profile(models.Model):
         
     def __str__(self):
         return self.user.username
+
+    def is_moderator(self):
+        """Return True if the user belongs to the 'moderador' group."""
+        return self.user.groups.filter(name='moderador').exists()
+    is_moderator.boolean = True
+    is_moderator.short_description = 'Moderador'
         
         
 def create_user_profile(sender, instance, created, **kwargs):   
