@@ -12,13 +12,13 @@ class Profile(models.Model):
     location = models.CharField(max_length=150, null=True, blank=True, verbose_name='Localidad')
     
     class Meta:
-        verbo_name = 'perfil'
-        verbo_name = 'perfiles'
-        ordering = [-id]
+        verbose_name = 'perfil'
+        verbose_name_plural = 'perfiles'
+        ordering = ['-id']
         
         
     def __str__(self):
-            return self.username
+        return self.user.username
         
         
 def create_user_profile(sender, instance, created, **kwargs):   
