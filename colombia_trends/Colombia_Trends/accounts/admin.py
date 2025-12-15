@@ -2,6 +2,18 @@ from django.contrib import admin
 from .models import Profile
 # Register your models here.
 
-admin.site.register(Profile)
+#Profile Detallado
+class ProfileAdmin(admin.ModelAdmin):
+    list_display = ('user', 'apodo', 'location', 'user_group')
+    # Use double-underscore lookups to search related fields
+    search_fields = ('location', 'user__username', 'user__groups__name')
+    list_filter = ('user__groups', 'location')
+    
+    def user_group(self, obj):
+        return " - ".join([t.name for t in obj.user.groups.all().order_by('name')])
+    
+    user_group.short_description = 'Grupo'
+
+admin.site.register(Profile, ProfileAdmin)
 
 
